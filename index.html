@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sala 31 - Cursos de Dados, IA e Automação</title>
+    <style>
+        :root {
+            --primary-color: #001f5c; /* Azul escuro do logo */
+            --secondary-color: #fecb00; /* Amarelo/Dourado do logo */
+            --accent-color: #006430; /* Verde escuro do logo */
+            --whatsapp-color: #25D366;
+            --linkedin-color: #0077b5;
+            --text-color: #333;
+            --light-gray-bg: #f9f9f9;
+            --white-bg: #ffffff;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray-bg);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+        header {
+            background: var(--white-bg);
+            padding: 0.5rem 0;
+            border-bottom: 3px solid var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+        nav ul {
+            margin: 0; padding: 0; list-style: none;
+        }
+        nav ul li {
+            display: inline; margin-left: 20px;
+        }
+        nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* --- ESTILOS PARA O LOGO SALA 31 --- */
+        .logo { text-decoration: none; }
+        .logo-text { font-family: 'Poppins', sans-serif; font-weight: 800; display: flex; flex-direction: column; justify-content: center; line-height: 1; }
+        .logo-sala31-sala { font-size: 32px; letter-spacing: 1px; }
+        .logo-sala31-sala .blue { color: var(--primary-color); }
+        .logo-sala31-sala .green { color: var(--accent-color); }
+        .logo-sala31-numero { font-size: 32px; color: var(--secondary-color); margin-top: -8px; }
+        /* --- FIM DOS ESTILOS DO LOGO --- */
+
+        .section { padding: 80px 0; }
+        #hero { background: linear-gradient(rgba(0, 31, 92, 0.8), rgba(0, 31, 92, 0.8)), url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=2070' ) center/cover no-repeat; color: #fff; text-align: center; padding: 100px 0; }
+        #hero h1 { font-size: 2.5rem; margin-bottom: 15px; font-weight: 700; }
+        #hero p { font-size: 1.1rem; max-width: 750px; margin: 0 auto 30px auto; font-weight: 300; }
+        .cta-button { display: inline-block; background: var(--secondary-color); color: var(--primary-color); padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1rem; transition: all 0.3s ease; border: 2px solid var(--secondary-color); cursor: pointer; }
+        .cta-button:hover { background: transparent; color: var(--secondary-color); }
+        .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 10px; color: var(--primary-color); font-weight: 700; }
+        .section-subtitle { text-align: center; font-size: 1rem; color: #777; margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .tabs { display: flex; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; gap: 10px; }
+        .tab-button { padding: 12px 25px; cursor: pointer; background: var(--white-bg); border: 2px solid #ddd; border-radius: 50px; font-size: 1rem; font-weight: 600; color: var(--primary-color); transition: all 0.3s ease; }
+        .tab-button:hover { background: #e9e9e9; border-color: #ccc; }
+        .tab-button.active { background: var(--primary-color); color: var(--white-bg); border-color: var(--primary-color); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-card { background: var(--white-bg); padding: 30px; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.07); border-top: 5px solid var(--accent-color); display: flex; flex-direction: column; }
+        .service-card h3 { font-size: 1.6rem; color: var(--primary-color); margin-top: 0; }
+        .service-card ul { list-style: none; padding: 0; margin: 20px 0; flex-grow: 1; }
+        .service-card ul li { padding-left: 25px; position: relative; margin-bottom: 10px; }
+        .service-card ul li::before { content: '✓'; position: absolute; left: 0; color: var(--accent-color); font-weight: bold; }
+        .service-card .example { background: var(--light-gray-bg); padding: 15px; border-radius: 5px; font-style: italic; border-left: 3px solid var(--secondary-color); }
+        .service-card .example strong { display: block; margin-bottom: 5px; font-style: normal; color: var(--primary-color); }
+        #process { background: var(--white-bg); }
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; }
+        .timeline::after { content: ''; position: absolute; width: 4px; background-color: var(--accent-color); top: 0; bottom: 0; left: 20px; margin-left: -2px; }
+        .timeline-item { padding: 10px 0 10px 50px; position: relative; width: 100%; box-sizing: border-box; }
+        .timeline-item::after { content: ''; position: absolute; width: 20px; height: 20px; left: 10px; background-color: var(--white-bg); border: 4px solid var(--accent-color); top: 25px; border-radius: 50%; z-index: 1; }
+        .timeline-content { padding: 20px; background-color: var(--light-gray-bg); position: relative; border-radius: 6px; }
+        .timeline-content h3 { margin-top: 0; color: var(--primary-color); }
+        
+        .team-grid { display: grid; justify-content: center; }
+        .team-card { background: var(--white-bg); padding: 30px; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.07); border-top: 5px solid var(--secondary-color); display: flex; flex-direction: column; text-align: center; max-width: 400px; }
+        .team-card h3 { font-size: 1.5rem; color: var(--primary-color); margin-top: 0; margin-bottom: 5px; }
+        .team-title { color: var(--secondary-color); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 15px; display: block; }
+        .team-card p:not(.team-title) { flex-grow: 1; margin-bottom: 20px; }
+        .linkedin-link { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; background-color: transparent; border: 2px solid var(--linkedin-color); color: var(--linkedin-color); border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; margin-top: auto; align-self: center; }
+        .linkedin-link:hover { background-color: var(--linkedin-color); color: var(--white-bg); }
+        .linkedin-link svg { width: 16px; height: 16px; fill: currentColor; }
+        
+        #precos { background-color: var(--white-bg); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-bottom: 60px; }
+        .pricing-card { background: var(--white-bg); padding: 30px; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.07); border-top: 5px solid var(--primary-color); display: flex; flex-direction: column; }
+        .pricing-card h3 { font-size: 1.6rem; color: var(--primary-color); margin-top: 0; text-align: center; }
+        .payment-info { text-align: center; font-style: italic; color: var(--accent-color); margin-bottom: 25px; font-weight: 600; }
+        .pricing-card .modules { list-style: none; padding: 0; margin: 0 0 30px 0; flex-grow: 1; }
+        .pricing-card .modules li { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+        .pricing-card .modules li:last-child { border-bottom: none; }
+        .pricing-card .modules span { font-size: 0.95rem; }
+        .pricing-card .modules strong { font-size: 1.1rem; color: var(--primary-color); }
+        .pricing-card .cta-button { margin-top: auto; text-align: center; }
+
+        .special-offer { background: linear-gradient(45deg, var(--primary-color), #3e5772); color: var(--white-bg); padding: 40px; border-radius: 8px; text-align: center; box-shadow: 0 10px 30px rgba(44, 62, 80, 0.3); }
+        .special-offer h3 { font-size: 1.8rem; margin-top: 0; color: var(--secondary-color); }
+        .special-offer p { font-size: 1.1rem; max-width: 600px; margin: 10px auto 20px auto; }
+        .discounts { display: flex; justify-content: center; gap: 30px; margin-top: 20px; flex-wrap: wrap; }
+        .discount-item { background: rgba(255,255,255,0.1); padding: 15px 25px; border-radius: 8px; }
+        .discount-item .value { font-size: 2rem; font-weight: 700; color: var(--white-bg); display: block; }
+        .discount-item .condition { font-size: 0.9rem; }
+
+        .case-card { background: var(--white-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 5px 25px rgba(0,0,0,0.07); display: flex; }
+        .case-card-content { padding: 30px; display: flex; flex-direction: column; }
+        .case-card-content h3 { margin-top: 0; color: var(--primary-color); }
+        .case-card-content p { flex-grow: 1; }
+        .case-card-content .tag { display: inline-block; background: var(--accent-color); color: #fff; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; margin-bottom: 15px; font-weight: 600; }
+        .case-card-content .result { font-size: 1.2rem; font-weight: bold; color: var(--primary-color); margin-top: 15px; background-color: #f0fdf4; padding: 10px; border-radius: 5px; border-left: 4px solid var(--accent-color); }
+        .case-card-content .result span { color: var(--accent-color); margin-right: 8px; }
+        #whatsapp-cta { background-color: var(--white-bg); text-align: center; }
+        .whatsapp-button { background-color: var(--whatsapp-color); color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 10px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .whatsapp-button:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+        .whatsapp-button svg { width: 24px; height: 24px; fill: currentColor; }
+        #contact { background: var(--primary-color); color: #fff; }
+        #contact .section-title, #contact .section-subtitle { color: #fff; }
+        .contact-form { max-width: 700px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 15px; border-radius: 5px; border: none; font-family: 'Poppins', sans-serif; box-sizing: border-box; }
+        .contact-form button { width: auto; justify-self: center; }
+        footer { background: #222; color: #aaa; text-align: center; padding: 30px 0; font-size: 0.9rem; }
+        footer a { color: var(--secondary-color); text-decoration: none; font-weight: bold; }
+        footer a:hover { text-decoration: underline; }
+
+        @media (min-width: 768px) {
+            header .container { height: 90px; }
+            .logo-sala31-sala, .logo-sala31-numero { font-size: 38px; }
+            nav ul li { margin-left: 30px; }
+            #hero h1 { font-size: 3.5rem; }
+            #hero p { font-size: 1.3rem; }
+            .section-title { font-size: 2.8rem; }
+            .timeline::after { left: 50%; }
+            .timeline-item { width: 50%; padding: 10px 40px; }
+            .timeline-item.left { left: 0; padding-left: 0; text-align: right; }
+            .timeline-item.right { left: 50%; padding-right: 0; text-align: left; }
+            .timeline-item.left::after { right: -10px; left: auto; }
+            .timeline-item.right::after { left: -10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <a href="#" class="logo">
+            <div class="logo-text">
+                <span class="logo-sala31-sala">
+                    <span class="blue">SA</span><span class="green">LA</span>
+                </span>
+                <span class="logo-sala31-numero">31</span>
+            </div>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#cursos">Cursos</a></li>
+                <li><a href="#precos">Preços</a></li>
+                <li><a href="#metodologia">Metodologia</a></li>
+                <li><a href="#instrutor">Instrutor</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section id="hero">
+    <div class="container">
+        <h1>Capacitação Prática em Dados, IA e Automação para Negócios.</h1>
+        <p>Transforme sua carreira e sua empresa com cursos práticos que resolvem problemas reais. Aprenda as ferramentas que o mercado exige.</p>
+        <a href="#cursos" class="cta-button">Conheça Nossos Cursos</a>
+    </div>
+</section>
+
+<section id="cursos" class="section">
+    <div class="container">
+        <h2 class="section-title">Nossas Trilhas de Conhecimento</h2>
+        <p class="section-subtitle">Navegue por nossas formações, criadas para levar você do básico ao avançado nas tecnologias mais demandadas.</p>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'bi')">Dados & BI</button>
+            <button class="tab-button" onclick="openTab(event, 'ia')">Gestão & IA</button>
+            <button class="tab-button" onclick="openTab(event, 'excel')">Excel</button>
+            <button class="tab-button" onclick="openTab(event, 'automacao')">Automação com IA</button>
+            <button class="tab-button" onclick="openTab(event, 'whatsapp')">WhatsApp IA</button>
+            <button class="tab-button" onclick="openTab(event, 'sites')">Sites com IA</button>
+        </div>
+
+        <!-- ABA DE DADOS & BI -->
+        <div id="bi" class="tab-content active">
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>Fundamentos de Dados e BI</h3>
+                    <ul>
+                        <li>Visão geral do mercado, conceitos de dados e o papel do analista de BI.</li>
+                        <li>Introdução às ferramentas: Power BI, Excel e o ecossistema da Microsoft.</li>
+                        <li>Conceitos de modelagem de dados, ETL (Extração, Transformação e Carga) e construção de dashboards.</li>
+                        <li>Análise de indicadores e métricas para gestão de performance.</li>
+                    </ul>
+                    <div class="example"><strong>Ideal para:</strong> Iniciantes em BI, gestores e analistas que precisam de uma base sólida para trabalhar com dados.</div>
+                </div>
+                <div class="service-card">
+                    <h3>Desenvolvimento de Projetos de BI</h3>
+                    <ul>
+                        <li>Metodologia para projetos de BI: do escopo à entrega final.</li>
+                        <li>Levantamento de requisitos com stakeholders e definição de regras de negócio.</li>
+                        <li>Construção prática: tratamento de dados, modelagem, criação de visuais e publicação de relatórios.</li>
+                        <li>Foco em storytelling com dados: como apresentar informações de forma clara e impactante.</li>
+                    </ul>
+                    <div class="example"><strong>Ideal para:</strong> Analistas que querem liderar projetos de BI e profissionais que buscam gerenciar a entrega de dashboards.</div>
+                </div>
+                <div class="service-card">
+                    <h3>Elaboração e Projetos Profissionais</h3>
+                    <ul>
+                        <li>Como escolher o projeto certo para seu portfólio e desenvolver um case de ponta a ponta.</li>
+                        <li>Técnicas para apresentar seus projetos de forma profissional e atrair a atenção do mercado.</li>
+                        <li>Melhores práticas de documentação, manutenção e evolução de projetos de BI.</li>
+                        <li>Simulação de um projeto completo, desde a concepção até a apresentação final.</li>
+                    </ul>
+                    <div class="example"><strong>Ideal para:</strong> Profissionais que querem construir um portfólio de BI matador e se destacar em processos seletivos.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABA DE GESTÃO & IA -->
+        <div id="ia" class="tab-content">
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>Introdução à Inteligência Artificial</h3>
+                    <ul>
+                        <li>Desmistificando a IA: conceitos, história e aplicações práticas para negócios.</li>
+                        <li>O poder da IA Generativa: como usar ferramentas como ChatGPT para otimizar tarefas.</li>
+                        <li>Introdução a Prompts: como "conversar" com a IA para obter os melhores resultados.</li>
+                        <li>Análise de casos de uso reais em diferentes setores da indústria.</li>
+                    </ul>
+                    <div class="example"><strong>Ideal para:</strong> Gestores e profissionais de qualquer área que desejam entender o potencial da IA e aplicá-la em seu dia a dia.</div>
+                </div>
+                 <div class="service-card">
+                    <h3>Aplicações Práticas de IA</h3>
+                    <ul>
+                        <li>Identificação de processos que podem ser automatizados ou otimizados com IA.</li>
+                        <li>Uso de IA para análise de dados, geração de relatórios, criação de conteúdo e suporte à decisão.</li>
+                        <li>Implementação de pequenas automações usando IA para aumentar a produtividade pessoal e da equipe.</li>
+                        <li>Ferramentas No-Code/Low-Code para aplicar IA sem precisar programar.</li>
+                    </ul>
+                    <div class="example"><strong>Ideal para:</strong> Profissionais que buscam soluções práticas e de rápida implementação para otimizar a rotina de trabalho com IA.</div>
+                </div>
+                <div class="service-card">
+                    <h3>Estratégia, Execução e Governança</h3>
+                    <ul>
+                        <li>Como alinhar projetos de IA com os objetivos estratégicos da empresa.</li>
+                        <li>Desenvolvimento de um roadmap para a implementação de IA, com fases e metas claras.</li>
+                        <li>Governança de IA: ética, segurança, vieses e como gerenciar os riscos associados.</li>
+                        <li>Criação de uma cultura orientada a dados e IA dentro da organização.</li>
+                    </ul>
+                    <div class="example"><strong>Ideal para:</strong> Líderes e gestores C-Level que precisam criar e executar uma estratégia de IA de ponta a ponta.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABA DE EXCEL -->
+        <div id="excel" class="tab-content">
+            <div class="service-grid">
+                 <div class="service-card">
+                    <h3>Excel Básico - Lógica de Construção</h3>
+                    <ul>
+                        <li>Introdução à interface e principais funcionalidades do Excel.</li>
+                        <li>Fórmulas essenciais: SOMA, MÉDIA, SE, PROCV, etc.</li>
+                        <li>Formatação de células, tabelas e aplicação de formatação condicional.</li>
+                        <li>Criação de gráficos simples para visualização de dados.</li>
+                    </ul>
+                    <div class="example"><strong>Ideal para:</strong> Iniciantes que precisam dominar os fundamentos do Excel para tarefas do dia a dia.</div>
+                </div>
+                 <div class="service-card">
+                    <h3>Excel Intermediário - Dashboards</h3>
+                    <ul>
+                        <li>Criação de tabelas dinâmicas para análise de grandes volumes de dados.</li>
+                        <li>Uso de segmentação de dados e linha do tempo para filtros interativos.</li>
+                        <li>Desenvolvimento de dashboards dinâmicos com gráficos e indicadores de performance (KPIs).</li>
+                        <li>Funções avançadas como SOMASES, CONT.SES e funções de texto.</li>
+                    </ul>
+                    <div class="example"><strong>Ideal para:</strong> Analistas que desejam criar relatórios e dashboards interativos para análise gerencial.</div>
+                </div>
+                <div class="service-card">
+                    <h3>Excel Avançado - Análise Complexa</h3>
+                    <ul>
+                        <li>Introdução ao Power Query para importação e tratamento de dados (ETL).</li>
+                        <li>Criação de modelos de dados com Power Pivot e introdução à linguagem DAX.</li>
+                        <li>Uso de Solver e Atingir Meta para simulação de cenários e otimização.</li>
+                        <li>Automação de tarefas com gravação de macros e introdução ao VBA.</li>
+                    </ul>
+                    <div class="example"><strong>Ideal para:</strong> Profissionais que buscam automatizar tarefas, analisar dados complexos e construir soluções robustas no Excel.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABA DE AUTOMAÇÃO -->
+        <div id="automacao" class="tab-content">
+             <div class="service-grid">
+                <div class="service-card">
+                    <h3>Automação Inteligente - Introdução</h3>
+                    <ul>
+                        <li>Conceitos de RPA (Automação Robótica de Processos) e automação inteligente.</li>
+                        <li>Mapeamento de processos: como identificar as melhores oportunidades de automação.</li>
+                        <li>Introdução a ferramentas No-Code de automação como Zapier e Make.</li>
+                        <li>Construção do primeiro robô para automatizar uma tarefa simples (ex: salvar anexos de e-mail).</li>
+                    </ul>
+                    <div class="example"><strong>Ideal para:</strong> Profissionais que desejam automatizar tarefas manuais e repetitivas, mesmo sem saber programar.</div>
+                </div>
+                <div class="service-card">
+                    <h3>Automação Inteligente - Avançado</h3>
+                    <ul>
+                        <li>Integração de IA nas automações para tarefas mais complexas (ex: classificar e-mails, extrair dados de PDFs).</li>
+                        <li>Uso de APIs para conectar diferentes sistemas e criar fluxos de trabalho integrados.</li>
+                        <li>Tratamento de erros e exceções para criar robôs mais robustos e confiáveis.</li>
+                        <li>Desenvolvimento de um projeto de automação ponta a ponta para um processo de negócio real.</li>
+                    </ul>
+                    <div class="example"><strong>Ideal para:</strong> Usuários que já conhecem o básico e querem construir automações complexas e resilientes, integrando com IA.</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ABA DE WHATSAPP IA -->
+        <div id="whatsapp" class="tab-content">
+             <div class="service-grid">
+                <div class="service-card">
+                    <h3>Chatbots no WhatsApp - Básico</h3>
+                    <ul>
+                        <li>Introdução ao universo dos chatbots e assistentes virtuais.</li>
+                        <li>Planejamento e design de um fluxo de conversa (FAQ, captura de leads).</li>
+                        <li>Construção de um chatbot básico usando plataformas No-Code.</li>
+                        <li>Integração do chatbot com a API oficial do WhatsApp.</li>
+                    </ul>
+                    <div class="example"><strong>Ideal para:</strong> Empreendedores e equipes de marketing que desejam automatizar o atendimento inicial e a captação de leads no WhatsApp.</div>
+                </div>
+                <div class="service-card">
+                    <h3>Chatbots no WhatsApp - Avançado</h3>
+                    <ul>
+                        <li>Integração do chatbot com IA Generativa (ChatGPT) para respostas mais humanas e dinâmicas.</li>
+                        <li>Conexão com sistemas externos (CRMs, planilhas) para consultar e registrar informações.</li>
+                        <li>Desenvolvimento de fluxos transacionais (agendamentos, consultas de status de pedido).</li>
+                        <li>Estratégias para escalar o atendimento e gerenciar múltiplos usuários.</li>
+                    </ul>
+                    <div class="example"><strong>Ideal para:</strong> Desenvolvedores e profissionais que querem construir chatbots inteligentes e transacionais que agregam valor real ao negócio.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABA DE SITES IA -->
+        <div id="sites" class="tab-content">
+             <div class="service-grid">
+                <div class="service-card">
+                    <h3>Criação de Sites com Inteligência</h3>
+                    <ul>
+                        <li>Uso de IA para gerar textos (copywriting), imagens e sugestões de design para o site.</li>
+                        <li>Introdução a construtores de sites modernos (Webflow, Framer) que facilitam a criação.</li>
+                        <li>Princípios de SEO (Otimização para Mecanismos de Busca) aplicados com ajuda de IA.</li>
+                        <li>Criação de uma landing page completa, do zero à publicação, usando ferramentas inteligentes.</li>
+                    </ul>
+                    <div class="example"><strong>Ideal para:</strong> Empreendedores, freelancers e profissionais de marketing que precisam criar sites e landing pages de alta conversão de forma rápida e eficiente.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="precos" class="section">
+    <div class="container">
+        <h2 class="section-title">Investimento por Módulo</h2>
+        <p class="section-subtitle">Escolha os módulos que fazem sentido para você e monte sua própria trilha de conhecimento com flexibilidade.</p>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Curso Dados & BI</h3>
+                <p class="payment-info">Parcele em até 4x sem juros</p>
+                <ul class="modules">
+                    <li><span>Módulo 1: Fundamentos</span> <strong>R$ 187</strong></li>
+                    <li><span>Módulo 2: Projetos de BI</span> <strong>R$ 220</strong></li>
+                    <li><span>Módulo 3: Portfólio Profissional</span> <strong>R$ 253</strong></li>
+                </ul>
+                <a href="http://api.whatsapp.com/send?phone=5567993515206&text=Olá!%20Tenho%20interesse%20nos%20módulos%20do%20Curso%20Dados%20%26%20BI." target="_blank" rel="noopener noreferrer" class="cta-button">Quero este Curso</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Curso Gestão & IA</h3>
+                <p class="payment-info">Parcele em até 4x sem juros</p>
+                <ul class="modules">
+                    <li><span>Módulo 1: Introdução à IA</span> <strong>R$ 198</strong></li>
+                    <li><span>Módulo 2: Aplicações Práticas</span> <strong>R$ 231</strong></li>
+                    <li><span>Módulo 3: Estratégia e Governança</span> <strong>R$ 264</strong></li>
+                </ul>
+                <a href="http://api.whatsapp.com/send?phone=5567993515206&text=Olá!%20Tenho%20interesse%20nos%20módulos%20do%20Curso%20Gestão%20%26%20IA." target="_blank" rel="noopener noreferrer" class="cta-button">Quero este Curso</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Curso Excel</h3>
+                <p class="payment-info">Parcele em até 4x sem juros</p>
+                <ul class="modules">
+                    <li><span>Módulo 1: Básico à Lógica</span> <strong>R$ 132</strong></li>
+                    <li><span>Módulo 2: Dashboards Interativos</span> <strong>R$ 165</strong></li>
+                    <li><span>Módulo 3: Análise Avançada</span> <strong>R$ 198</strong></li>
+                </ul>
+                <a href="http://api.whatsapp.com/send?phone=5567993515206&text=Olá!%20Tenho%20interesse%20nos%20módulos%20do%20Curso%20Excel." target="_blank" rel="noopener noreferrer" class="cta-button">Quero este Curso</a>
+            </div>
+            
+            <div class="pricing-card">
+                <h3>Curso Automação com IA</h3>
+                <p class="payment-info">Parcele em até 4x sem juros</p>
+                <ul class="modules">
+                    <li><span>Módulo 1: Introdução</span> <strong>R$ 297</strong></li>
+                    <li><span>Módulo 2: Avançado</span> <strong>R$ 352</strong></li>
+                </ul>
+                <a href="http://api.whatsapp.com/send?phone=5567993515206&text=Olá!%20Tenho%20interesse%20nos%20módulos%20do%20Curso%20Automação%20com%20IA." target="_blank" rel="noopener noreferrer" class="cta-button">Quero este Curso</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Curso WhatsApp com IA</h3>
+                <p class="payment-info">Parcele em até 4x sem juros</p>
+                <ul class="modules">
+                    <li><span>Módulo 1: Chatbots Básicos</span> <strong>R$ 297</strong></li>
+                    <li><span>Módulo 2: Chatbots Avançados</span> <strong>R$ 352</strong></li>
+                </ul>
+                <a href="http://api.whatsapp.com/send?phone=5567993515206&text=Olá!%20Tenho%20interesse%20nos%20módulos%20do%20Curso%20WhatsApp%20com%20IA." target="_blank" rel="noopener noreferrer" class="cta-button">Quero este Curso</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Curso Sites com IA</h3>
+                <p class="payment-info">Parcele em até 4x sem juros</p>
+                <ul class="modules">
+                    <li><span>Módulo 1: Criação Inteligente</span> <strong>R$ 330</strong></li>
+                </ul>
+                <a href="http://api.whatsapp.com/send?phone=5567993515206&text=Olá!%20Tenho%20interesse%20no%20módulo%20do%20Curso%20Sites%20com%20IA." target="_blank" rel="noopener noreferrer" class="cta-button">Quero este Curso</a>
+            </div>
+        </div>
+
+        <div class="special-offer">
+            <h3>Desconto Progressivo: Monte sua Trilha!</h3>
+            <p>Quanto mais você estuda, mais você economiza. Combine módulos de diferentes cursos e acelere sua carreira com um super desconto.</p>
+            <div class="discounts">
+                <div class="discount-item">
+                    <span class="value">5% OFF</span>
+                    <span class="condition">no seu 2º módulo</span>
+                </div>
+                <div class="discount-item">
+                    <span class="value">10% OFF</span>
+                    <span class="condition">no 3º módulo ou mais</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="metodologia" class="section">
+    <div class="container">
+        <h2 class="section-title">Nossa Metodologia</h2>
+        <p class="section-subtitle">Uma jornada de aprendizado prática e colaborativa em 4 etapas para garantir seu desenvolvimento.</p>
+        <div class="timeline">
+            <div class="timeline-item left"><div class="timeline-content"><h3>1. Nivelamento</h3><p>Entendemos seu nível de conhecimento e seus objetivos para indicar a melhor trilha de aprendizado.</p></div></div>
+            <div class="timeline-item right"><div class="timeline-content"><h3>2. Aulas e Projetos</h3><p>Aulas diretas ao ponto e projetos práticos que simulam desafios reais do mercado de trabalho.</p></div></div>
+            <div class="timeline-item left"><div class="timeline-content"><h3>3. Mentoria e Suporte</h3><p>Você não está sozinho. Oferecemos suporte contínuo e mentorias para tirar dúvidas e guiar seus projetos.</p></div></div>
+            <div class="timeline-item right"><div class="timeline-content"><h3>4. Evolução</h3><p>Com o certificado em mãos e um portfólio robusto, você estará preparado para os próximos desafios da sua carreira.</p></div></div>
+        </div>
+    </div>
+</section>
+
+<section id="instrutor" class="section" style="background-color: var(--light-gray-bg);">
+    <div class="container">
+        <h2 class="section-title">Nosso Instrutor</h2>
+        <p class="section-subtitle">Conheça o especialista que combina vivência de mercado com didática para acelerar seu aprendizado.</p>
+        <div class="team-grid">
+            <div class="team-card">
+                <h3>Renato Rosa</h3>
+                <p class="team-title">Fundador & Instrutor Principal</p>
+                <p>Consultor com vasta experiência em projetos de dados, finanças e tecnologia para grandes empresas. É responsável por desenvolver todo o conteúdo dos cursos, garantindo que o conhecimento seja prático, atualizado e diretamente aplicável aos desafios do negócio.</p>
+                <a href="https://www.linkedin.com/in/gestorrenato/" class="linkedin-link" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+                    <span>LinkedIn</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="projetos" class="section" style="background-color: var(--white-bg);">
+    <div class="container">
+        <h2 class="section-title">Projetos de Alunos</h2>
+        <p class="section-subtitle">Veja exemplos de projetos reais desenvolvidos durante nossos cursos e mentorias.</p>
+        <div class="service-grid">
+            <div class="case-card">
+                <div class="case-card-content">
+                    <span class="tag">Projeto de BI</span>
+                    <h3>Dashboard Orçamentário para Construção Civil</h3>
+                    <p>Aluno desenvolveu um painel no Power BI para controlar o orçamento de obras em tempo real, comparando o previsto vs. realizado por etapa e fornecedor.</p>
+                    <div class="result"><span>✔</span>Visibilidade instantânea de desvios e maior controle de custos.</div>
+                </div>
+            </div>
+            <div class="case-card">
+                <div class="case-card-content">
+                    <span class="tag">Projeto de Automação com IA</span>
+                    <h3>Robô para Conciliação Fiscal</h3>
+                    <p>Profissional da área fiscal criou uma automação que lê e-mails, baixa relatórios e realiza a conciliação de notas, gerando um resumo de inconsistências.</p>
+                    <div class="result"><span>✔</span>Redução de 80% no tempo gasto com a tarefa, eliminando erros manuais.</div>
+                </div>
+            </div>
+            <div class="case-card">
+                <div class="case-card-content">
+                    <span class="tag">Projeto de WhatsApp IA</span>
+                    <h3>Chatbot para Agendamento em Clínica</h3>
+                    <p>Dono de clínica implementou um chatbot no WhatsApp que qualifica, agenda e confirma consultas, integrado com a agenda do Google.</p>
+                    <div class="result"><span>✔</span>Aumento de 25% no número de agendamentos e otimização do tempo da recepcionista.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="whatsapp-cta" class="section">
+    <div class="container">
+        <h2 class="section-title">Prefere um contato mais direto?</h2>
+        <p class="section-subtitle">Tire suas dúvidas sobre os cursos e veja qual a melhor trilha para você. Fale agora com nosso time.</p>
+        <a href="http://api.whatsapp.com/send?phone=5567993515206&text=Olá!%20Visitei%20o%20site%20da%20Sala%2031%20e%20gostaria%20de%20mais%20informações%20sobre%20os%20cursos." class="whatsapp-button" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.8 0-66.3-11.1-92.2-31.2l-6.7-4-69.8 18.3L72 359.2l-4.5-7c-21.9-34.1-33.7-74.3-33.7-116.3 0-108.4 88.1-196.5 196.5-196.5 53.1 0 103.3 20.5 140.2 57.4 36.9 36.9 57.3 87.1 57.3 140.2 0 108.4-88.2 196.5-196.6 196.5zm101.7-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.8-16.2-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.4 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+            <span>Falar no WhatsApp</span>
+        </a>
+    </div>
+</section>
+
+<section id="contact" class="section">
+    <div class="container">
+        <h2 class="section-title">Pronto para começar?</h2>
+        <p class="section-subtitle">Deixe seus dados abaixo que entraremos em contato para tirar todas as suas dúvidas sobre os cursos e as formas de pagamento.</p>
+        <form action="https://formsubmit.co/gestor.renatorosa@gmail.com" method="POST" class="contact-form">
+            <input type="text" name="name" placeholder="Seu Nome Completo" required>
+            <input type="email" name="email" placeholder="Seu Melhor E-mail" required>
+            <input type="text" name="interesse" placeholder="Qual curso ou trilha você tem mais interesse?">
+            <textarea name="message" rows="5" placeholder="Qual seu principal objetivo de aprendizado hoje?" required></textarea>
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://renato0503.github.io/cerradofinancas/obrigado.html"> <!-- Lembre-se de criar uma página de "obrigado" ou mudar este link -->
+            <button type="submit" class="cta-button">Enviar Mensagem</button>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>© 2024 Sala 31 | Todos os direitos reservados.</p>
+        <p>Capacitação prática para o mundo real.</p>
+        <p>Instrutor Responsável: <a href="https://www.linkedin.com/in/gestorrenato/" target="_blank" rel="noopener noreferrer">Renato de Oliveira Rosa</a></p>
+    </div>
+</footer>
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tabbuttons;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tabbuttons = document.getElementsByClassName("tab-button");
+        for (i = 0; i < tabbuttons.length; i++) {
+            tabbuttons[i].className = tabbuttons[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Garante que a primeira aba ('bi') esteja visível ao carregar
+        document.getElementById("bi").style.display = "block";
+    });
+</script>
+
+</body>
+</html>
